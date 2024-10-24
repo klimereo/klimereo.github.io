@@ -1,47 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Berke Şenşekerci</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Navigation tabs -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BS-Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
     <header>
-      <nav>
-        <ul>
-          <li><a href="#home">Homepage</a></li>
-          <li><a href="#aworks">Academic Works</a></li>
-          <li><a href="#cv">CV</a></li>
-        </ul>
-      </nav>
+        <div class="logo">My Name</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#aworks">Academic Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Main content -->
-    <main>
-      <section id="bio-section">
-        <div class="bio">
-          <h1>John Doe</h1>
-          <p>
-            I am a doctoral student at the University of Warsaw and a linguist
+    <section id="home" class="hero-section">
+        <div class="photo-container">
+            <img src="your-picture.jpg" alt="themist">
+        </div>
+        <div class="hero-content">
+            <h1>About Me</h1>
+            <p>I am a doctoral student at the University of Warsaw and a linguist
             specializing in the syntax and semantics of natural languages. My
             research combines experimental and computational methodologies to
             address linguistic questions, driven by my belief that linguistics
-            is still a key discipline within cognitive science.
-          </p>
+            is still a key discipline within cognitive science.</p>
         </div>
-        <div class="profile">
-          <img src="your-picture.jpg" alt="Your Picture" />
-          <div class="social-media">
-            <a href="https://github.com/klimereo" target="_blank">GitHub</a>
-          </div>
+    </section>
+
+    <section id="aworks" class="about-section">
+        <h2>Academic Works</h2>
+        <div class="about-photo">
+            <img src="foto.jpg" alt="foto">
         </div>
-      </section>
-    </main>
-  </body>
+        <p>Here are my publications: </p>
+    </section>
+
+
+    <section id="contact" class="contact-section">
+        <h2>Contact Me</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Mastic theme by Σουβουθίκος. All Rights Reserved.</p>
+    </footer>
+</body>
 </html>
