@@ -3,46 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Personal Website</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Iwona:wght@400&display=swap" rel="stylesheet"> 
+    <title>Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header with navigation tabs -->
     <header>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="#">Homepage</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#cv">CV</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Homepage</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#projects">Other Projects</a></li>
+            </ul>
+        </nav>
     </header>
 
+    <!-- Main content -->
     <main>
-        <div class="container">
-            <section class="about">
-                <h2>About me:</h2>
-                <p>I am John Doe, etc. etc. This is where you describe yourself, your research interests, professional achievements, and other relevant information.</p>
-            </section>
-            <section class="profile">
-                <div class="profile-img">
-                    <img src="your-photo.jpg" alt="Your Photo">
+        <section id="bio-section">
+            <div class="bio">
+                <h1>Your Name</h1>
+                <p>Brief bio about yourself goes here. You can describe your background, your research, or any other relevant information.</p>
+            </div>
+            <div class="profile">
+                <img src="your-picture.jpg" alt="Your Picture">
+                <div class="social-media">
+                    <a href="your-linkedin-url" target="_blank">LinkedIn</a>
+                    <a href="your-twitter-url" target="_blank">Twitter</a>
+                    <a href="your-github-url" target="_blank">GitHub</a>
+                    <!-- Add more social media links as needed -->
                 </div>
-                <div class="contact-info">
-                    <h3>Contact</h3>
-                    <p>your.email@example.com</p>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
-
-    <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
-    </footer>
 </body>
 </html>
