@@ -1,81 +1,74 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* General styles */
 body {
     font-family: 'Iwona', sans-serif;
-    color: #333;
-    background-color: #f4f4f9;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-    background-color: #005f99;
-    padding: 10px 0;
+    background-color: #003366;
+    padding: 15px 0;
 }
 
-nav ul {
-    list-style: none;
+header nav ul {
     display: flex;
     justify-content: center;
+    list-style: none;
 }
 
-nav ul li {
+header nav ul li {
     margin: 0 15px;
 }
 
-nav ul li a {
+header nav ul li a {
+    color: white;
     text-decoration: none;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 5px 10px;
-    transition: background 0.3s;
+    font-weight: bold;
 }
 
-nav ul li a:hover {
-    background-color: #004377;
-    border-radius: 5px;
-}
-
-main {
+/* Bio and profile section */
+#bio-section {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 40px;
-    background-color: #fff;
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
 }
 
-.about {
-    flex: 0 0 50%;
+.bio {
+    flex: 1;
+    max-width: 50%;
     padding: 20px;
-    background-color: #e6f2ff;
-    border: 1px solid #b3d9ff;
-    border-radius: 10px;
+}
+
+.bio h1 {
+    font-size: 2.5em;
+    color: #003366;
+}
+
+.bio p {
+    font-size: 1.2em;
+    line-height: 1.6;
 }
 
 .profile {
+    flex: 1;
     text-align: center;
-    flex: 0 0 30%;
 }
 
-.profile-img img {
-    width: 150px;
-    height: 150px;
+.profile img {
+    width: 200px;
     border-radius: 50%;
-    border: 2px solid #005f99;
 }
 
-.contact-info {
+.social-media {
     margin-top: 20px;
-    font-size: 1.1rem;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #005f99;
-    color: #fff;
-    margin-top: 20px;
+.social-media a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #003366;
+    text-decoration: none;
+    font-size: 1.2em;
 }
