@@ -6,21 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Personal Website</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Iwona:wght@400&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="profile">
-                <img src="your-photo.jpg" alt="Your Photo" class="profile-img">
-                <div class="bio">
-                    <h1>Your Name</h1>
-                    <p>Short bio goes here. You can include your background, research interests, and a bit about your academic journey or professional expertise.</p>
-                </div>
-            </div>
             <nav>
                 <ul>
+                    <li><a href="#">Homepage</a></li>
                     <li><a href="#publications">Publications</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#cv">CV</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -28,20 +24,21 @@
     </header>
 
     <main>
-        <section id="publications">
-            <h2>Publications</h2>
-            <p>List of publications or link to your Google Scholar profile.</p>
-        </section>
-
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>Showcase your key projects here.</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Include a simple contact form or email link.</p>
-        </section>
+        <div class="container">
+            <section class="about">
+                <h2>About me:</h2>
+                <p>I am John Doe, etc. etc. This is where you describe yourself, your research interests, professional achievements, and other relevant information.</p>
+            </section>
+            <section class="profile">
+                <div class="profile-img">
+                    <img src="your-photo.jpg" alt="Your Photo">
+                </div>
+                <div class="contact-info">
+                    <h3>Contact</h3>
+                    <p>your.email@example.com</p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
