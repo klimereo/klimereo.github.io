@@ -3,66 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        header {
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav {
-            margin: 1rem;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem;
-        }
-        .bio {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        .bio img {
-            border-radius: 50%;
-            margin-right: 2rem;
-        }
-        .bio p {
-            max-width: 600px;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Personal Website</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>About Me</h1>
-    </header>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <div class="container">
-        <div class="bio">
-            <img src="your_picture.jpg" alt="Your Picture" width="150" height="150">
-            <p>Hi, I'm John Doe, a software engineer with a passion for creating innovative solutions and improving technology. I have worked in the tech industry for over 10 years and have contributed to numerous open-source projects.</p>
+        <div class="container">
+            <div class="profile">
+                <img src="your-photo.jpg" alt="Your Photo" class="profile-img">
+                <div class="bio">
+                    <h1>Your Name</h1>
+                    <p>Short bio goes here. You can include your background, research interests, and a bit about your academic journey or professional expertise.</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <main>
+        <section id="publications">
+            <h2>Publications</h2>
+            <p>List of publications or link to your Google Scholar profile.</p>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Showcase your key projects here.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Include a simple contact form or email link.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
 </body>
 </html>
