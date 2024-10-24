@@ -3,10 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About a Person</title>
+    <title>About Me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            margin: 1rem;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem;
+        }
+        .bio {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .bio img {
+            border-radius: 50%;
+            margin-right: 2rem;
+        }
+        .bio p {
+            max-width: 600px;
+        }
+    </style>
 </head>
 <body>
-    <h1>About John Doe</h1>
-    <p>John Doe is a software engineer with a passion for creating innovative solutions and improving technology.</p>
+    <header>
+        <h1>About Me</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="bio">
+            <img src="your_picture.jpg" alt="Your Picture" width="150" height="150">
+            <p>Hi, I'm John Doe, a software engineer with a passion for creating innovative solutions and improving technology. I have worked in the tech industry for over 10 years and have contributed to numerous open-source projects.</p>
+        </div>
+    </div>
 </body>
 </html>
