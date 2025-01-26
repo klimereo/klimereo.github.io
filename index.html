@@ -6,6 +6,15 @@
     // Google Sheets URL
     const sheetUrl = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vRT9W9-DWMSD7AMLM6Bjcjp0GML4Iy2PKY8zfyAjYuegySw8mp6JZlHiXQLKMx3R_UEK5y8FnnIRcFY/pubhtml";
 
+    const response = await fetch(sheetUrl);
+    if (!response.ok) {
+        console.error(`HTTP error! status: ${response.status}`);
+      return;
+    }
+    const text = await response.text();
+    console.log(text); // Check if it's HTML or JSON
+
+    
     // Fetch the experiment data from the Google Sheet
     async function getExperimentData() {
       const response = await fetch(sheetUrl);
