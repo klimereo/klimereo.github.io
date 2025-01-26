@@ -1,63 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Master</title>
-  <script>
-    // Google Sheets URL
-    const sheetUrl = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vRT9W9-DWMSD7AMLM6Bjcjp0GML4Iy2PKY8zfyAjYuegySw8mp6JZlHiXQLKMx3R_UEK5y8FnnIRcFY/pubhtml";
-
-    const response = await fetch(sheetUrl);
-    if (!response.ok) {
-        console.error(`HTTP error! status: ${response.status}`);
-      return;
-    }
-    const text = await response.text();
-    console.log(text); // Check if it's HTML or JSON
-
-    
-    // Fetch the experiment data from the Google Sheet
-    async function getExperimentData() {
-      const response = await fetch(sheetUrl);
-      const data = await response.json();
-
-      // Parse the sheet data
-      const experiments = [];
-      for (let i = 0; i < data.feed.entry.length; i += 2) {
-        const experimentName = data.feed.entry[i].content.$t;
-        const responseCount = parseInt(data.feed.entry[i + 1].content.$t, 10);
-        experiments.push({ name: experimentName, count: responseCount });
-      }
-
-      return experiments;
-    }
-
-    // Function to choose the experiment with the least responses
-    function chooseExperiment(experiments) {
-      // Find the experiment(s) with the least responses
-      const minResponses = Math.min(...experiments.map(exp => exp.count));
-      const leastExperiments = experiments.filter(exp => exp.count === minResponses);
-
-      // Randomly choose one if there are ties
-      const randomExperiment = leastExperiments[Math.floor(Math.random() * leastExperiments.length)];
-
-      return randomExperiment.name;
-    }
-
-    // Redirect the user to the appropriate experiment
-    async function redirectToExperiment() {
-      const experiments = await getExperimentData();
-      const chosenExperiment = chooseExperiment(experiments);
-
-      // Redirect to the chosen experiment's index.html page
-      window.location.href = `/${chosenExperiment}/index.html`;
-    }
-
-    // Run the function to assign and redirect
-    redirectToExperiment();
-  </script>
-</head>
-<body>
-  <p>Redirecting...</p>
-</body>
+  <head>
+    <title>AE3</title>
+    <script src="jspsych/jspsych.js"></script>
+    <script src="jspsych/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych/plugin-html-button-response.js"></script>
+    <script src="jspsych/plugin-html-slider-response.js"></script>
+    <link href="jspsych/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script src="experiment.js"></script>
 </html>
-
