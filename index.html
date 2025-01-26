@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>AE1</title>
-    <script src="jspsych/jspsych.js"></script>
-    <script src="jspsych/plugin-html-keyboard-response.js"></script>
-    <script src="jspsych/plugin-html-button-response.js"></script>
-    <script src="jspsych/plugin-html-slider-response.js"></script>
-    <link href="jspsych/jspsych.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body></body>
-  <script src="experiment.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Function to redirect the user randomly to one of the experiments
+        function redirectToExperiment() {
+            // Array of experiment paths
+            const experiments = [
+                'experiment_1/index.html',
+                'experiment_2/index.html',
+                'experiment_3/index.html'
+            ];
+
+            // Generate a random index
+            const randomIndex = Math.floor(Math.random() * experiments.length);
+
+            // Redirect the user
+            window.location.href = experiments[randomIndex];
+        }
+
+        // Call the function on page load
+        window.onload = redirectToExperiment;
+    </script>
+</head>
+<body>
+    <p style="text-align: center; font-family: Arial, sans-serif; font-size: 20px;">
+        Redirecting you to the experiment, please wait...
+    </p>
+</body>
 </html>
