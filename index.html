@@ -5,16 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        // Function to redirect the user randomly to one of the experiments
         function redirectToExperiment() {
-            // Array of experiment paths
+            // Exp paths
             const experiments = [
                 'experiment_1/index.html',
                 'experiment_2/index.html',
                 'experiment_3/index.html'
             ];
 
-            // Generate a random index
+            // Random index generator
             const randomIndex = Math.floor(Math.random() * experiments.length);
 
             // Redirect the user
