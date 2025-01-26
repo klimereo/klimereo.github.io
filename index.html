@@ -47,21 +47,20 @@
     </style>
     <script>
         function redirectToExperiment() {
-            // Experiment paths
             const experiments = [
-                'experiment_1/index.html',
-                'experiment_2/index.html',
-                'experiment_3/index.html'
+                'https://onpaagmhz0.cognition.run/',
+                'https://mdjnuiyerp.cognition.run/',
+                'https://3rsw1mpadw.cognition.run/'
             ];
 
-            // Random index generator
+            // Randomly select one of the experiments
             const randomIndex = Math.floor(Math.random() * experiments.length);
 
-            // Redirect the user
+            // Redirect to the selected experiment
             window.location.href = experiments[randomIndex];
         }
 
-        // Call the function on page load
+        // Redirect the user on page load
         window.onload = redirectToExperiment;
     </script>
 </head>
@@ -70,7 +69,7 @@
         <p class="redirect-message">Redirecting you to the experiment, please wait...</p>
         <p class="help-section">
             If you encounter any issues, please contact us at 
-            <a href="b.sensekerci@uw.edu.pl" class="email">b.sensekerci@uw.edu.pl</a>.
+            <a href="mailto:b.sensekerci@uw.edu.pl" class="email">b.sensekerci@uw.edu.pl</a>.
         </p>
     </div>
 </body>
