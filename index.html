@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Main</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffffff, #f7f7f7);
+            color: #333;
+        }
+        .message-container {
+            text-align: center;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            max-width: 600px;
+        }
+        .redirect-message {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .help-section {
+            font-size: 14px;
+            color: #555;
+            margin-top: 15px;
+        }
+        .email {
+            color: #2980b9;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .email:hover {
+            text-decoration: underline;
+        }
+    </style>
     <script>
         function redirectToExperiment() {
-            // Exp paths
+            // Experiment paths
             const experiments = [
                 'experiment_1/index.html',
                 'experiment_2/index.html',
@@ -25,8 +66,12 @@
     </script>
 </head>
 <body>
-    <p style="text-align: center; font-family: Arial, sans-serif; font-size: 20px;">
-        Redirecting you to the experiment, please wait...
-    </p>
+    <div class="message-container">
+        <p class="redirect-message">Redirecting you to the experiment, please wait...</p>
+        <p class="help-section">
+            If you encounter any issues, please contact us at 
+            <a href="b.sensekerci@uw.edu.pl" class="email">b.sensekerci@uw.edu.pl</a>.
+        </p>
+    </div>
 </body>
 </html>
