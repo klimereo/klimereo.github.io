@@ -47,29 +47,35 @@
     </style>
     <script>
         async function redirectToExperiment() {
-            try {
-                // Load visit count data from the JSON file
-                const response = await fetch('visit_counts.json');
-                const visitData = await response.json();
+    try {
+        // Append a timestamp to the URL to force a fresh fetch
+        const response = await fetch(`visit_counts.json?t=${new Date().getTime()}`, { cache: "no-store" });
+        const visitData = await response.json();
 
-                const urlEntries = Object.entries(visitData);
+        const urlEntries = Object.entries(visitData);
 
-                if (urlEntries.length === 0) {
-                    console.error("No URLs found in visit_counts.json");
-                    return;
-                }
-                const minCount = Math.min(...urlEntries.map(([url, count]) => count));
-
-                const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
-
-                const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
-
-                window.location.href = selectedURL;
-
-            } catch (error) {
-                console.error("Error loading json:", error);
-            }
+        if (urlEntries.length === 0) {
+            console.error("No URLs found in visit_counts.json");
+            return;
         }
+
+        // Find the minimum visit count
+        const minCount = Math.min(...urlEntries.map(([url, count]) => count));
+
+        // Get all URLs with the minimum count
+        const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
+
+        // Randomly select one if there are ties
+        const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
+
+        // Redirect to the selected experiment URL
+        window.location.href = selectedURL;
+
+    } catch (error) {
+        console.error("Error loading json:", error);
+    }
+}
+
 
         // Redirect user on page load
         window.onload = redirectToExperiment;
