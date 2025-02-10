@@ -46,50 +46,68 @@
         }
     </style>
     <script>
-        async function redirectToExperiment() {
-        try {
-        // Check if the user already has an assigned experiment URL
-            const storedURL = localStorage.getItem("assignedExperimentURL");
-
-            if (storedURL) {
-            // If a URL is already assigned, redirect immediately
-                window.location.href = storedURL;
-                return;
-            }
-
-            // Load visit count data from the JSON file
-            const response = await fetch('visit_counts.json');
-            const visitData = await response.json();
-    
-            const urlEntries = Object.entries(visitData);
-    
-            if (urlEntries.length === 0) {
-                console.error("No URLs found in visit_counts.json");
-                return;
-            }
-    
-            // Find the minimum visit count
-            const minCount = Math.min(...urlEntries.map(([url, count]) => count));
-    
-            // Get all URLs with the minimum count
-            const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
-    
-            // Randomly select one if there are ties
-            const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
-    
-            // Store the assigned URL in localStorage
-            localStorage.setItem("assignedExperimentURL", selectedURL);
-    
-            // Redirect to the selected experiment URL
-            window.location.href = selectedURL;
-    
-        } catch (error) {
-            console.error("Error loading JSON:", error);
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
         }
-    }
-    
-    // Redirect user on page load
-    window.onload = redirectToExperiment;
+        
+        function getCookie(name) {
+            const cookies = document.cookie.split("; ");
+            for (let cookie of cookies) {
+                const [key, value] = cookie.split("=");
+                if (key === name) {
+                    return value;
+                }
+            }
+            return null;
+        }
+        
+        async function redirectToExperiment() {
+            try {
+                // Check if the user already has an assigned experiment URL in cookies
+                const storedURL = getCookie("assignedExperimentURL");
+        
+                if (storedURL) {
+                    // If a URL is already assigned, redirect immediately
+                    window.location.href = storedURL;
+                    return;
+                }
+        
+                // Load visit count data from the JSON file
+                const response = await fetch('visit_counts.json');
+                const visitData = await response.json();
+        
+                const urlEntries = Object.entries(visitData);
+        
+                if (urlEntries.length === 0) {
+                    console.error("No URLs found in visit_counts.json");
+                    return;
+                }
+        
+                // Find the minimum visit count
+                const minCount = Math.min(...urlEntries.map(([url, count]) => count));
+        
+                // Get all URLs with the minimum count
+                const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
+        
+                // Randomly select one if there are ties
+                const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
+        
+                // Store the assigned URL in a cookie (valid for 2 days)
+                setCookie("assignedExperimentURL", selectedURL, 2);
+        
+                // Redirect to the selected experiment URL
+                window.location.href = selectedURL;
+        
+            } catch (error) {
+                console.error("Error loading JSON:", error);
+            }
+        }
+        
+        // Redirect user on page load
+        window.onload = redirectToExperiment;
     </script>
 </head>
 <body>
