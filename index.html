@@ -47,38 +47,50 @@
     </style>
     <script>
         async function redirectToExperiment() {
-            try {
-                // Load visit count data from the JSON file
-                const response = await fetch('visit_counts.json');
-                const visitData = await response.json();
+    try {
+        // Check if the user already has an assigned experiment URL
+        const storedURL = localStorage.getItem("assignedExperimentURL");
 
-                // Convert JSON object into an array of key-value pairs
-                const urlEntries = Object.entries(visitData);
-
-                if (urlEntries.length === 0) {
-                    console.error("No URLs found in visit_counts.json");
-                    return;
-                }
-
-                // Find the minimum visit count
-                const minCount = Math.min(...urlEntries.map(([url, count]) => count));
-
-                // Get all URLs with the minimum count
-                const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
-
-                // Randomly select one if there are ties
-                const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
-
-                // Redirect to the selected experiment URL
-                window.location.href = selectedURL;
-
-            } catch (error) {
-                console.error("Error loading json:", error);
-            }
+        if (storedURL) {
+            // If a URL is already assigned, redirect immediately
+            window.location.href = storedURL;
+            return;
         }
 
-        // Redirect user on page load
-        window.onload = redirectToExperiment;
+        // Load visit count data from the JSON file
+        const response = await fetch('visit_counts.json');
+        const visitData = await response.json();
+
+        // Convert JSON object into an array of key-value pairs
+        const urlEntries = Object.entries(visitData);
+
+        if (urlEntries.length === 0) {
+            console.error("No URLs found in visit_counts.json");
+            return;
+        }
+
+        // Find the minimum visit count
+        const minCount = Math.min(...urlEntries.map(([url, count]) => count));
+
+        // Get all URLs with the minimum count
+        const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
+
+        // Randomly select one if there are ties
+        const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
+
+        // Store the assigned URL in localStorage
+        localStorage.setItem("assignedExperimentURL", selectedURL);
+
+        // Redirect to the selected experiment URL
+        window.location.href = selectedURL;
+
+    } catch (error) {
+        console.error("Error loading JSON:", error);
+    }
+}
+
+// Redirect user on page load
+window.onload = redirectToExperiment;
     </script>
 </head>
 <body>
