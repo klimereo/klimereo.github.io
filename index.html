@@ -46,22 +46,38 @@
         }
     </style>
     <script>
-        function redirectToExperiment() {
-            const experiments = [
-                'https://onpaagmhz0.cognition.run/',
-                'https://mdjnuiyerp.cognition.run/',
-                'https://3rsw1mpadw.cognition.run/',
-                'https://oekdktuxlx.cognition.run/'
-            ];
+        async function redirectToExperiment() {
+            try {
+                // Load visit count data from the JSON file
+                const response = await fetch('visit_counts.json');
+                const visitData = await response.json();
 
-            // Randomly select one of the experiments
-            const randomIndex = Math.floor(Math.random() * experiments.length);
+                // Convert JSON object into an array of key-value pairs
+                const urlEntries = Object.entries(visitData);
 
-            // Redirect to the selected experiment
-            window.location.href = experiments[randomIndex];
+                if (urlEntries.length === 0) {
+                    console.error("No URLs found in visit_counts.json");
+                    return;
+                }
+
+                // Find the minimum visit count
+                const minCount = Math.min(...urlEntries.map(([url, count]) => count));
+
+                // Get all URLs with the minimum count
+                const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
+
+                // Randomly select one if there are ties
+                const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
+
+                // Redirect to the selected experiment URL
+                window.location.href = selectedURL;
+
+            } catch (error) {
+                console.error("Error loading json:", error);
+            }
         }
 
-        // Redirect the user on page load
+        // Redirect user on page load
         window.onload = redirectToExperiment;
     </script>
 </head>
