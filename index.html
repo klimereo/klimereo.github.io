@@ -61,7 +61,6 @@
             const response = await fetch('visit_counts.json');
             const visitData = await response.json();
     
-            // Convert JSON object into an array of key-value pairs
             const urlEntries = Object.entries(visitData);
     
             if (urlEntries.length === 0) {
