@@ -72,7 +72,7 @@
                     return;
                 }
 
-                const response = await fetch('angielski/visit_counts.json');
+                const response = await fetch('visit_counts.json');
                 const visitData = await response.json();
 
                 const urlEntries = Object.entries(visitData);
