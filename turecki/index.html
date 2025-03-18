@@ -64,39 +64,26 @@
         }
 
         async function redirectToExperiment() {
-    try {
-        const storedURL = getCookie("assignedExperimentURL");
+            try {
+                const response = await fetch('visit_counts.json');
+                const visitData = await response.json();
 
-        if (storedURL) {
-            setTimeout(() => {
-                window.location.href = storedURL;
-            }, 1500); 
-            return;
+                const urlEntries = Object.entries(visitData);
+                if (urlEntries.length === 0) {
+                    console.error("No URLs found in visit_counts.json");
+                    return;
+                }
+
+                const minCount = Math.min(...urlEntries.map(([url, count]) => count));
+                const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
+                const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
+
+                window.location.href = selectedURL;
+
+            } catch (error) {
+                console.error("Error loading JSON:", error);
+            }
         }
-
-        const response = await fetch('turecki/visit_counts.json');
-        const visitData = await response.json();
-
-        const urlEntries = Object.entries(visitData);
-        if (urlEntries.length === 0) {
-            console.error("No URLs found in visit_counts.json");
-            return;
-        }
-
-        const minCount = Math.min(...urlEntries.map(([url, count]) => count));
-        const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
-        const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
-
-        setCookie("assignedExperimentURL", selectedURL, 2);
-
-        setTimeout(() => {
-            window.location.href = selectedURL;
-        }, 1500); 
-
-    } catch (error) {
-        console.error("Error loading JSON:", error);
-    }
-}
 
 
         window.onload = redirectToExperiment;
