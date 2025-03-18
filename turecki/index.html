@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klimereo's Oracle</title>
+    <title>Klimereo's Portal Master</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,33 +64,40 @@
         }
 
         async function redirectToExperiment() {
-            try {
-                const storedURL = getCookie("assignedExperimentURL");
+    try {
+        const storedURL = getCookie("assignedExperimentURL");
 
-                if (storedURL) {
-                    window.location.href = storedURL;
-                    return;
-                }
-
-                const response = await fetch('visit_counts.json');
-                const visitData = await response.json();
-
-                const urlEntries = Object.entries(visitData);
-                if (urlEntries.length === 0) {
-                    console.error("No URLs found in visit_counts.json");
-                    return;
-                }
-
-                const minCount = Math.min(...urlEntries.map(([url, count]) => count));
-                const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
-                const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
-
-                setCookie("assignedExperimentURL", selectedURL, 2);
-                window.location.href = selectedURL;
-            } catch (error) {
-                console.error("Error loading JSON:", error);
-            }
+        if (storedURL) {
+            setTimeout(() => {
+                window.location.href = storedURL;
+            }, 2500); 
+            return;
         }
+
+        const response = await fetch('visit_counts.json');
+        const visitData = await response.json();
+
+        const urlEntries = Object.entries(visitData);
+        if (urlEntries.length === 0) {
+            console.error("No URLs found in visit_counts.json");
+            return;
+        }
+
+        const minCount = Math.min(...urlEntries.map(([url, count]) => count));
+        const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
+        const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
+
+        setCookie("assignedExperimentURL", selectedURL, 2);
+
+        setTimeout(() => {
+            window.location.href = selectedURL;
+        }, 2500); 
+
+    } catch (error) {
+        console.error("Error loading JSON:", error);
+    }
+}
+
 
         window.onload = redirectToExperiment;
     </script>
