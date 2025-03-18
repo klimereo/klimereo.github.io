@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+    <title>Klimereo's Oracle</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,11 +46,6 @@
         }
     </style>
     <script>
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
         function setCookie(name, value, days) {
             const date = new Date();
             date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
@@ -70,17 +65,10 @@
 
         async function redirectToExperiment() {
             try {
-                const sonaId = getQueryParam("sona_id");
-
-                if (!sonaId) {
-                    document.body.innerHTML = "<h1>Error: Missing sona_id parameter</h1>";
-                    return;
-                }
-
                 const storedURL = getCookie("assignedExperimentURL");
 
                 if (storedURL) {
-                    window.location.href = `${storedURL}?sona_id=${encodeURIComponent(sonaId)}`;
+                    window.location.href = storedURL;
                     return;
                 }
 
@@ -97,11 +85,8 @@
                 const leastVisitedURLs = urlEntries.filter(([url, count]) => count === minCount).map(([url]) => url);
                 const selectedURL = leastVisitedURLs[Math.floor(Math.random() * leastVisitedURLs.length)];
 
-                const finalURL = `${selectedURL}?sona_id=${encodeURIComponent(sonaId)}`;
-
-                setCookie("assignedExperimentURL", finalURL, 2);
-
-                window.location.href = finalURL;
+                setCookie("assignedExperimentURL", selectedURL, 2);
+                window.location.href = selectedURL;
             } catch (error) {
                 console.error("Error loading JSON:", error);
             }
@@ -112,10 +97,10 @@
 </head>
 <body>
     <div class="message-container">
-        <p class="redirect-message">Redirecting you to the experiment, please wait...</p>
+        <p class="redirect-message">Ankete yönlendiriliyorsunuz. Lütfen bekleyin...</p>
         <p class="help-section">
-            If you encounter any issues, please contact us at 
-            <a href="mailto:b.sensekerci@uw.edu.pl" class="email">b.sensekerci@uw.edu.pl</a>.
+            Teknik bir problem yaşamanız durumunda bize
+            <a href="mailto:b.sensekerci@uw.edu.pl" class="email">b.sensekerci@uw.edu.pl</a> adresinden ulaşabilirsiniz.
         </p>
     </div>
 </body>
