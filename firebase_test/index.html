@@ -2,57 +2,62 @@
 <html>
 <head>
   <title>Balanced Redirect</title>
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-firestore-compat.js"></script>
+  <script type="module">
+    // Import modular Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+    // Your Firebase config
+    const firebaseConfig = {
+    apiKey: "AIzaSyAx5puOlTEABP6OAhWPY35qtViStTovrQo",
+    authDomain: "symco-7af01.firebaseapp.com",
+    projectId: "symco-7af01",
+    storageBucket: "symco-7af01.firebasestorage.app",
+    messagingSenderId: "907225895613",
+    appId: "1:907225895613:web:857bcb53dfbde37f781dd4"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Function to redirect user to the link with lowest count
+    async function redirectUser() {
+      try {
+        const snapshot = await getDocs(collection(db, 'links'));
+        if (snapshot.empty) {
+          console.error('No links found');
+          return;
+        }
+
+        // Find link with lowest count
+        let minLink = null;
+        snapshot.forEach(docSnap => {
+          const data = docSnap.data();
+          if (!minLink || data.count < minLink.count) {
+            minLink = { id: docSnap.id, ...data };
+          }
+        });
+
+        if (!minLink) return;
+
+        // Increment count atomically
+        const linkRef = doc(db, 'links', minLink.id);
+        await updateDoc(linkRef, { count: increment(1) });
+
+        // Redirect user
+        window.location.href = minLink.url;
+
+      } catch (err) {
+        console.error('Error redirecting:', err);
+      }
+    }
+
+    // Run redirect on page load
+    redirectUser();
+  </script>
 </head>
 <body>
-<script>
-  const firebaseConfig = {
-  apiKey: "AIzaSyAx5puOlTEABP6OAhWPY35qtViStTovrQo",
-  authDomain: "symco-7af01.firebaseapp.com",
-  projectId: "symco-7af01",
-  storageBucket: "symco-7af01.firebasestorage.app",
-  messagingSenderId: "907225895613",
-  appId: "1:907225895613:web:857bcb53dfbde37f781dd4"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  async function redirectUser() {
-    try {
-      const snapshot = await db.collection('links').get();
-      if (snapshot.empty) {
-        console.error('No links found');
-        return;
-      }
-
-      // Find link with lowest count
-      let minLink = null;
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        if (!minLink || data.count < minLink.count) {
-          minLink = { id: doc.id, ...data };
-        }
-      });
-
-      if (!minLink) return;
-
-      // Increment count
-      await db.collection('links').doc(minLink.id)
-              .update({ count: firebase.firestore.FieldValue.increment(1) });
-
-      // Redirect
-      window.location.href = minLink.url;
-
-    } catch (err) {
-      console.error("Error redirecting:", err);
-    }
-  }
-
-  // Run on page load
-  redirectUser();
-</script>
+  <p>Redirecting... please wait.</p>
 </body>
 </html>
